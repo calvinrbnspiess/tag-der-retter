@@ -220,7 +220,7 @@ const Block = styled.span`
 export default withSiteData(() => (
   <Site>
     <Hero>
-      <TagDerRetterLogo autoPlay src="tdrlogo.mp4" />
+      <TagDerRetterLogo muted autoPlay playsInline src="tdrlogo.mp4" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">

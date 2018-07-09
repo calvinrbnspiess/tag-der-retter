@@ -130,7 +130,7 @@ class ParallaxBackgroundTriangle extends Component {
       vertical: 50
     };
 
-    this.lastOffset = window.scrollY;
+    this.lastOffset = typeof document !== "undefined" ? window.scrollY : 0;
 
     this.element = React.createRef();
   }

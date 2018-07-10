@@ -307,103 +307,58 @@ const InstitutionDescription = styled.div`
 const institutions = [
   {
     name: "Freiwillige Feuerwehr Landau",
-    header: "/318.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-feuerwehr-landau.jpg" />
-        <InstitutionDescription>
-          <Block color="#676666">
-            Bei uns stehen{" "}
-            <Block larger color="#41403F">
-              Menschen
-            </Block>{" "}
-            im
-            <Block larger color="#41403F">
-              Vordergrund.{" "}
-            </Block>
-          </Block>
-          <br /> <Block color="#676666">Freiwillige Feuerwehr Landau</Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/318.jpg"
   },
   {
     name: "Technisches Hilfswerk Ortsverband Landau",
-    header: "/168.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-thw.jpg" />
-        <InstitutionDescription>
-          <Block color="#676666">
-            Technisches Hilfswerk Ortsverband Landau
-          </Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/168.jpg"
   },
   {
     name: "Deutsches Rotes Kreuz",
-    header: "/151.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-drk.svg" />
-        <InstitutionDescription>
-          <Block color="#676666">Deutsches Rotes Kreuz</Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/151.jpg"
   },
   {
     name: "Kriseninterventionsdienst",
-    header: "/151.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-kid.png" />
-        <InstitutionDescription>
-          <Block color="#676666">Kriseninterventionsdienst</Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/151.jpg"
   },
   {
     name: "Polizeidirektion Landau",
-    header: "/151.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-polizei.png" />
-        <InstitutionDescription>
-          <Block color="#676666">Polizeidirektion Landau</Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/151.jpg"
   },
   {
     name: "Deutsche Lebens-Rettungs-Gesellschaft",
-    header: "/151.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-dlrg.jpg" />
-        <InstitutionDescription>
-          <Block color="#676666">
-            Deutsche Lebens-Rettungs-Gesellschaft e.V. Landau
-          </Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/151.jpg"
   },
   {
     name: "Reservisten der Bundeswehr",
-    header: "/151.jpg",
-    content: () => (
-      <Content>
-        <Logo src="./logo-reservisten-bundeswehr.jpg" />
-        <InstitutionDescription>
-          <Block color="#676666">Reservisten der Bundeswehr</Block>
-        </InstitutionDescription>
-      </Content>
-    )
+    header: "/151.jpg"
   }
 ];
+
+const sponsors = [
+  "./logo-energie-südwest.png",
+  "./logo-vr-bank.jpg",
+  "./logo-sparkasse-süw.jpg",
+  "./logo-kissel-stiftung.jpg",
+  "./logo-pro-group.jpg",
+  "./logo-antenne-landau.png"
+];
+
+const Footer = styled.div`
+  transform: translateY(50vw);
+`;
+
+const Sponsors = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+  grid-gap: 2.5em;
+  padding: 5em;
+`;
+
+const Sponsor = styled.img`
+  width: 100%;
+  object-fit: contain;
+`;
 
 export default withSiteData(() => (
   <Site>
@@ -471,11 +426,25 @@ export default withSiteData(() => (
                 <Next active={nextAvailable} onClick={onNext} />
               </Controls>
             </ParallaxBackgroundTriangle>
-            <Triangle children={item.content()} />
           </Fragment>
         )}
       />
-      <ParallaxBackgroundTriangle url="/168.jpg" />
+      <Triangle bgColor="#dbd9d8">
+        <Content>
+          <Block color="#676666">
+            <Block smaller>Mehr</Block>
+            <br />
+            <Block larger color="#41403F">
+              Infos<br />
+            </Block>{" "}
+            <Block smaller> folgen.</Block>
+            <br />
+          </Block>
+        </Content>
+      </Triangle>
     </ZickZack>
+    <Footer>
+      <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
+    </Footer>
   </Site>
 ));

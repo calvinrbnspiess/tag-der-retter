@@ -346,18 +346,40 @@ const sponsors = [
 
 const Footer = styled.div`
   transform: translateY(50vw);
+  padding: 0.5em;
 `;
 
 const Sponsors = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
   grid-gap: 2.5em;
-  padding: 5em;
+  padding: 2.5em;
 `;
 
 const Sponsor = styled.img`
   width: 100%;
   object-fit: contain;
+`;
+
+const FooterText = styled.div`
+  text-align: center;
+  padding: 1em;
+  font-size: 2.5vmax;
+  color: #41403f;
+`;
+
+const Link = styled.a`
+  text-align: center;
+  display: block;
+  font-size: 1.5vmax;
+  text-decoration: none;
+  color: #676666;
+  transition: color 0.5s;
+
+  &:hover {
+    color: #41403f;
+    text-decoration: underline;
+  }
 `;
 
 export default withSiteData(() => (
@@ -444,7 +466,9 @@ export default withSiteData(() => (
       </Triangle>
     </ZickZack>
     <Footer>
+      <FooterText>Mit freundlicher Unterstuetzung von:</FooterText>
       <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
+      <Link href="./impressum">Impressum</Link>
     </Footer>
   </Site>
 ));

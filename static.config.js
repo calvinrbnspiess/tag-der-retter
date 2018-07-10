@@ -15,6 +15,10 @@ export default {
       {
         is404: true,
         component: "src/containers/404"
+      },
+      {
+        path: "/impressum",
+        component: "src/containers/Imprint"
       }
     ];
   },
@@ -36,6 +40,7 @@ export default {
               name="viewport"
               content="width=device-width, initial-scale=1"
             />
+            <title>Tag der Retter</title>
             {renderMeta.styleTags}
           </Head>
           <Body>{children}</Body>

@@ -2,8 +2,12 @@ import React, { Component, Fragment } from "react";
 import { withSiteData } from "react-static";
 import styled, { css, keyframes } from "styled-components";
 
+const Site = styled.div`
+  padding: 1em;
+`;
+
 export default withSiteData(() => (
-  <Fragment>
+  <Site>
     <h2>Impressum</h2>
     <p>
       Michael Bumb<br />
@@ -94,5 +98,5 @@ export default withSiteData(() => (
         Impressum Vorlage von JuraForum.de
       </a>
     </p>
-  </Fragment>
+  </Site>
 ));

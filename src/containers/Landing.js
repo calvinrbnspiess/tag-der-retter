@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { withSiteData } from "react-static";
 import styled, { css, keyframes } from "styled-components";
 
@@ -95,6 +95,7 @@ const Triangle = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   font-size: 7.5vw;
+  position: relative;
   &:nth-child(odd) {
     clip-path: polygon(0 0, 100% 50%, 0 100%);
     text-align: left;
@@ -158,14 +159,6 @@ class ParallaxBackgroundTriangle extends Component {
     });
   };
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    console.log(Math.abs(nextState.vertical - this.state.vertical));
-    return (
-      this.state.vertical !== nextState.vertical &&
-      Math.abs(nextState.vertical - this.state.vertical) > 0.5
-    );
-  };
-
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll);
   };
@@ -185,7 +178,7 @@ class ParallaxBackgroundTriangle extends Component {
   }
 }
 
-const EventInfo = styled.div`
+const Content = styled.div`
   display: inline-flex;
   flex-direction: column;
   font-size: 1em;
@@ -217,6 +210,201 @@ const Block = styled.span`
     `};
 `;
 
+const Controls = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.25em;
+  padding: 3em;
+  padding-right: 7.5em;
+  box-sizing: border-box;
+`;
+
+const ControlButton = styled.div`
+  border: solid white;
+  border-width: 0 0.75em 0.75em 0;
+  display: inline-block;
+  padding: 1em;
+  ${props => props.active && `cursor: pointer`};
+  transition: transform 0.5s, border-color 0.25s;
+
+  &:hover {
+    border-color: #676666;
+  }
+`;
+
+const Previous = ControlButton.extend`
+  transform: rotate(135deg)
+    ${props => (props.active === true ? `scale(1)` : `scale(0)`)};
+`;
+
+const Next = ControlButton.extend`
+  transform: rotate(-45deg)
+    ${props => (props.active === true ? `scale(1)` : `scale(0)`)};
+`;
+
+class Carousel extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      index: 0,
+      previousAvailable: false,
+      nextAvailable: props.items.length > 1
+    };
+  }
+
+  updateIndex = index => {
+    this.setState({
+      index: index,
+      previousAvailable: index > 0,
+      nextAvailable: index + 1 < this.props.items.length
+    });
+  };
+
+  onPrevious = () => {
+    if (!this.state.previousAvailable) {
+      return;
+    }
+
+    this.updateIndex(this.state.index - 1);
+  };
+
+  onNext = () => {
+    if (!this.state.nextAvailable) {
+      return;
+    }
+
+    this.updateIndex(this.state.index + 1);
+  };
+
+  render() {
+    return this.props.render(
+      this.props.items[this.state.index],
+      this.onPrevious,
+      this.onNext,
+      this.state.previousAvailable,
+      this.state.nextAvailable
+    );
+  }
+}
+
+const Logo = styled.img`
+  width: 7.5em;
+  align-self: center;
+  object-fit: contain;
+  max-height: 3.5em;
+`;
+
+const InstitutionDescription = styled.div`
+  font-size: 0.25em;
+  padding: 1em;
+`;
+
+const institutions = [
+  {
+    name: "Freiwillige Feuerwehr Landau",
+    header: "/318.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-feuerwehr-landau.jpg" />
+        <InstitutionDescription>
+          <Block color="#676666">
+            Bei uns stehen{" "}
+            <Block larger color="#41403F">
+              Menschen
+            </Block>{" "}
+            im
+            <Block larger color="#41403F">
+              Vordergrund.{" "}
+            </Block>
+          </Block>
+          <br /> <Block color="#676666">Freiwillige Feuerwehr Landau</Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Technisches Hilfswerk Ortsverband Landau",
+    header: "/168.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-thw.jpg" />
+        <InstitutionDescription>
+          <Block color="#676666">
+            Technisches Hilfswerk Ortsverband Landau
+          </Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Deutsches Rotes Kreuz",
+    header: "/151.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-drk.svg" />
+        <InstitutionDescription>
+          <Block color="#676666">Deutsches Rotes Kreuz</Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Kriseninterventionsdienst",
+    header: "/151.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-kid.png" />
+        <InstitutionDescription>
+          <Block color="#676666">Kriseninterventionsdienst</Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Polizeidirektion Landau",
+    header: "/151.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-polizei.png" />
+        <InstitutionDescription>
+          <Block color="#676666">Polizeidirektion Landau</Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Deutsche Lebens-Rettungs-Gesellschaft",
+    header: "/151.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-dlrg.jpg" />
+        <InstitutionDescription>
+          <Block color="#676666">
+            Deutsche Lebens-Rettungs-Gesellschaft e.V. Landau
+          </Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  },
+  {
+    name: "Reservisten der Bundeswehr",
+    header: "/151.jpg",
+    content: () => (
+      <Content>
+        <Logo src="./logo-reservisten-bundeswehr.jpg" />
+        <InstitutionDescription>
+          <Block color="#676666">Reservisten der Bundeswehr</Block>
+        </InstitutionDescription>
+      </Content>
+    )
+  }
+];
+
 export default withSiteData(() => (
   <Site>
     <Hero>
@@ -225,7 +413,7 @@ export default withSiteData(() => (
     <ZickZack>
       <Triangle bgColor="#dbd9d8">
         {" "}
-        <EventInfo>
+        <Content>
           <Block smaller>
             <Block uppercase color="#41403F">
               09-18
@@ -244,15 +432,15 @@ export default withSiteData(() => (
           <Block uppercase color="#676666">
             Alter Messplatz
           </Block>
-        </EventInfo>
+        </Content>
       </Triangle>
       <ParallaxBackgroundTriangle url="/092.jpg" />
       <ParallaxBackgroundTriangle url="/112.jpg" />
       <Triangle bgColor="#dbd9d8">
-        <EventInfo>
+        <Content>
           <Block color="#676666">
             <Block larger color="#41403F">
-              6
+              7
             </Block>{" "}
             <Block smaller>Hilfsorganisationen</Block>
           </Block>
@@ -265,9 +453,29 @@ export default withSiteData(() => (
           <Block smaller color="#676666">
             zur Schau
           </Block>
-        </EventInfo>
+        </Content>
       </Triangle>
-      <ParallaxBackgroundTriangle url="/318.jpg" />
+      <Carousel
+        items={institutions}
+        render={(
+          item,
+          onPrevious,
+          onNext,
+          previousAvailable,
+          nextAvailable
+        ) => (
+          <Fragment>
+            <ParallaxBackgroundTriangle url={item.header}>
+              <Controls>
+                <Previous active={previousAvailable} onClick={onPrevious} />
+                <Next active={nextAvailable} onClick={onNext} />
+              </Controls>
+            </ParallaxBackgroundTriangle>
+            <Triangle children={item.content()} />
+          </Fragment>
+        )}
+      />
+      <ParallaxBackgroundTriangle url="/168.jpg" />
     </ZickZack>
   </Site>
 ));

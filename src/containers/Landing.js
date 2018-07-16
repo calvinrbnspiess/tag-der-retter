@@ -4,6 +4,7 @@ import styled, { css, keyframes } from "styled-components";
 
 const Site = styled.div`
   font-family: Adobe Gothic Std Bold;
+  background-color: #fbfcfb;
 `;
 
 const Hero = styled.div`
@@ -22,7 +23,7 @@ const Hero = styled.div`
   }
 `;
 
-const TagDerRetterLogo = styled.video`
+const TagDerRetterLogo = styled.img`
   width: 4em;
   position: absolute;
   top: -0.25em;
@@ -385,7 +386,7 @@ const Link = styled.a`
 export default withSiteData(() => (
   <Site>
     <Hero>
-      <TagDerRetterLogo muted autoPlay playsInline src="tdrlogo.mp4" />
+      <TagDerRetterLogo src="logo-tdr-nl.gif" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">

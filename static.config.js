@@ -41,6 +41,40 @@ export default {
               content="width=device-width, initial-scale=1"
             />
             <title>Tag der Retter</title>
+            <meta
+              name="description"
+              content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
+            />
+            <meta name="image" content="http://tagderretter.de/151.jpg" />
+            <meta itemprop="name" content="Tag der Retter" />
+            <meta
+              itemprop="description"
+              content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
+            />
+            <meta itemprop="image" content="http://tagderretter.de/151.jpg" />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="Tag der Retter" />
+            <meta
+              name="twitter:description"
+              content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
+            />
+            <meta name="twitter:site" content="@feuerwehr_ld" />
+            <meta name="twitter:creator" content="@feuerwehr_ld" />
+            <meta
+              name="twitter:image:src"
+              content="http://tagderretter.de/151.jpg"
+            />
+            <meta name="og:title" content="Tag der Retter" />
+            <meta
+              name="og:description"
+              content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
+            />
+            <meta name="og:image" content="http://tagderretter.de/151.jpg" />
+            <meta name="og:url" content="https://tagderretter.de/" />
+            <meta name="og:site_name" content="Tag der Retter" />
+            <meta name="og:locale" content="de_DE" />
+            <meta name="fb:admins" content="110421832318284" />
+            <meta name="og:type" content="website" />
             {renderMeta.styleTags}
           </Head>
           <Body>{children}</Body>

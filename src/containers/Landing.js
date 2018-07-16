@@ -386,7 +386,7 @@ const Link = styled.a`
 export default withSiteData(() => (
   <Site>
     <Hero>
-      <TagDerRetterLogo src="logo-tdr-nl.gif" />
+      <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">

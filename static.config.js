@@ -46,12 +46,12 @@ export default {
               content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
             />
             <meta name="image" content="http://tagderretter.de/151.jpg" />
-            <meta itemprop="name" content="Tag der Retter" />
+            <meta itemProp="name" content="Tag der Retter" />
             <meta
-              itemprop="description"
+              itemProp="description"
               content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
             />
-            <meta itemprop="image" content="http://tagderretter.de/151.jpg" />
+            <meta itemProp="image" content="http://tagderretter.de/151.jpg" />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:title" content="Tag der Retter" />
             <meta
@@ -64,17 +64,20 @@ export default {
               name="twitter:image:src"
               content="http://tagderretter.de/151.jpg"
             />
-            <meta name="og:title" content="Tag der Retter" />
+            <meta property="og:title" content="Tag der Retter" />
             <meta
-              name="og:description"
+              property="og:description"
               content="18. August 2018 - 7 Hilfsorganisationen stellen sich vor. Bei uns ziehen alle an einem Strang."
             />
-            <meta name="og:image" content="http://tagderretter.de/151.jpg" />
-            <meta name="og:url" content="https://tagderretter.de/" />
-            <meta name="og:site_name" content="Tag der Retter" />
-            <meta name="og:locale" content="de_DE" />
-            <meta name="fb:admins" content="110421832318284" />
-            <meta name="og:type" content="website" />
+            <meta
+              property="og:image"
+              content="http://tagderretter.de/151.jpg"
+            />
+            <meta property="og:url" content="https://tagderretter.de/" />
+            <meta property="og:site_name" content="Tag der Retter" />
+            <meta property="og:locale" content="de_DE" />
+            <meta property="fb:admins" content="110421832318284" />
+            <meta property="og:type" content="website" />
             {renderMeta.styleTags}
           </Head>
           <Body>{children}</Body>

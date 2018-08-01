@@ -9,6 +9,8 @@ injectGlobal`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: Adobe Gothic Std Bold;
+    background-color: #fbfcfb;
   }
 
   @font-face {

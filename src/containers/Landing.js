@@ -2,11 +2,6 @@ import React, { Component, Fragment } from "react";
 import { withSiteData } from "react-static";
 import styled, { css, keyframes } from "styled-components";
 
-const Site = styled.div`
-  font-family: Adobe Gothic Std Bold;
-  background-color: #fbfcfb;
-`;
-
 const Hero = styled.div`
   display: flex;
   justify-content: center;
@@ -367,6 +362,12 @@ const FooterText = styled.div`
   padding: 1em;
   font-size: 2.5vmax;
   color: #41403f;
+
+  ${props =>
+    props.larger &&
+    css`
+      font-size: 5vmax;
+    `};
 `;
 
 const Link = styled.a`
@@ -383,8 +384,42 @@ const Link = styled.a`
   }
 `;
 
+const Timeline = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const Event = styled.div`
+  --timeline-width: 0.25em;
+
+  display: block;
+  position: relative;
+  padding-bottom: 2.5em;
+  font-size: 1.5em;
+  text-align: center;
+
+  &:not(:last-child) {
+    &:after {
+      content: "";
+      border-left: var(--timeline-width) solid #41403f;
+      transform: translateX(calc(50% - var(--timeline-width) / 2));
+      height: 2.5em;
+      width: 100%;
+      display: block;
+      position: absolute;
+    }
+  }
+`;
+
+const Description = styled.span`
+  padding: 1em;
+  color: #676666;
+`;
+
 export default withSiteData(() => (
-  <Site>
+  <Fragment>
     <Hero>
       <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
     </Hero>
@@ -433,43 +468,72 @@ export default withSiteData(() => (
           </Block>
         </Content>
       </Triangle>
-      <Carousel
-        items={institutions}
-        render={(
-          item,
-          onPrevious,
-          onNext,
-          previousAvailable,
-          nextAvailable
-        ) => (
-          <Fragment>
-            <ParallaxBackgroundTriangle url={item.header}>
-              <Controls>
-                <Previous active={previousAvailable} onClick={onPrevious} />
-                <Next active={nextAvailable} onClick={onNext} />
-              </Controls>
-            </ParallaxBackgroundTriangle>
-          </Fragment>
-        )}
-      />
-      <Triangle bgColor="#dbd9d8">
-        <Content>
-          <Block color="#676666">
-            <Block smaller>Mehr</Block>
-            <br />
-            <Block larger color="#41403F">
-              Infos<br />
-            </Block>{" "}
-            <Block smaller> folgen.</Block>
-            <br />
-          </Block>
-        </Content>
-      </Triangle>
     </ZickZack>
     <Footer>
+      <FooterText larger>Tagesprogramm</FooterText>
+      <Timeline>
+        <Event>
+          9:00 Uhr
+          <Description>Musikalische Einstimmung</Description>
+        </Event>
+        <Event>
+          10:00 Uhr<Description>Offizielle Eroeffnung</Description>
+        </Event>
+        <Event>
+          10:15-10:45 Uhr<Description>Polizeihunde</Description>
+        </Event>
+        <Event>
+          11:00-11:45 Uhr<Description>Einsatzuebung Feuerwehr/DRK</Description>
+        </Event>
+        <Event>
+          11:45 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          11:45-12:15 Uhr<Description>Talkrunde</Description>
+        </Event>
+        <Event>
+          12:15-13:00 Uhr<Description>Einsatzuebung THW</Description>
+        </Event>
+        <Event>
+          13:00 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          13:15-13:45 Uhr<Description>Polizeihunde</Description>
+        </Event>
+        <Event>
+          13:55 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          14:00-14:45 Uhr<Description>Landespolizeiorhester</Description>
+        </Event>
+        <Event>
+          14:45 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          14:45-15:15 Uhr<Description>Talkrunde</Description>
+        </Event>
+        <Event>
+          15:15-16:00 Uhr<Description>Landespolizeiorhester</Description>
+        </Event>
+        <Event>
+          16:00 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          16:15-16:45 Uhr<Description>Polizeihunde</Description>
+        </Event>
+        <Event>
+          17:00-17:45 Uhr<Description>Einsatzuebung Feuerwehr/DRK</Description>
+        </Event>
+        <Event>
+          17:45 Uhr<Description>Auslosung Quiz</Description>
+        </Event>
+        <Event>
+          18:00 Uhr<Description>Veranstaltungsende</Description>
+        </Event>
+      </Timeline>
       <FooterText>Mit freundlicher Unterstuetzung von:</FooterText>
       <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
       <Link href="./impressum">Impressum</Link>
     </Footer>
-  </Site>
+  </Fragment>
 ));

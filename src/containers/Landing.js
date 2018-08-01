@@ -515,7 +515,7 @@ export default withSiteData(() => (
           14:45-15:15 Uhr<Description>Talkrunde</Description>
         </Event>
         <Event>
-          15:15-16:00 Uhr<Description>Landespolizeiorhester</Description>
+          15:15-16:00 Uhr<Description>Landespolizeiorchester</Description>
         </Event>
         <Event>
           16:00 Uhr<Description>Auslosung Quiz</Description>

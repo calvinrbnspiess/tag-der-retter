@@ -389,6 +389,8 @@ const Timeline = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
 `;
 
 const Event = styled.div`
@@ -419,7 +421,7 @@ const Description = styled.span`
 `;
 
 export default withSiteData(() => (
-  <div>
+  <Fragment>
     <Hero>
       <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
     </Hero>
@@ -535,5 +537,5 @@ export default withSiteData(() => (
       <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
       <Link href="./impressum">Impressum</Link>
     </Footer>
-  </div>
+  </Fragment>
 ));

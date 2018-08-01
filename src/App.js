@@ -8,8 +8,6 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    max-width: 100%;
     overflow-x: hidden;
     font-family: Adobe Gothic Std Bold;
     background-color: #fbfcfb;

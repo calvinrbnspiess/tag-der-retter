@@ -419,7 +419,7 @@ const Description = styled.span`
 `;
 
 export default withSiteData(() => (
-  <Fragment>
+  <div>
     <Hero>
       <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
     </Hero>
@@ -535,5 +535,5 @@ export default withSiteData(() => (
       <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
       <Link href="./impressum">Impressum</Link>
     </Footer>
-  </Fragment>
+  </div>
 ));

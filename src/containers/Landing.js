@@ -32,7 +32,7 @@ const ZickZack = styled.div`
   display: grid;
   max-width: 100%;
   grid-template-columns: 100vw 100vw;
-  grid-auto-rows: 100vw;
+  grid-auto-rows: 115.47vw;
 `;
 
 // const fadeinOdd = keyframes`
@@ -93,12 +93,12 @@ const Triangle = styled.div.attrs({
   font-size: 7.5vw;
   position: relative;
   &:nth-child(odd) {
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
     text-align: left;
   }
 
   &:nth-child(even) {
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
     transform: translateX(-100%) translateY(50%);
     text-align: right;
   }
@@ -340,9 +340,13 @@ const sponsors = [
   "./logo-antenne-landau.png"
 ];
 
-const Footer = styled.div`
+const FluentContent = styled.div`
   transform: translateY(50vw);
+`;
+
+const Footer = FluentContent.extend`
   padding: 0.5em;
+  background-color: white;
 `;
 
 const Sponsors = styled.div`
@@ -362,68 +366,155 @@ const FooterText = styled.div`
   padding: 1em;
   font-size: 2.5vmax;
   color: #41403f;
-
-  ${props =>
-    props.larger &&
-    css`
-      font-size: 5vmax;
-    `};
 `;
 
 const Link = styled.a`
   text-align: center;
-  display: block;
-  font-size: 1.5vmax;
+  display: inline;
+  font-size: 1.25em;
   text-decoration: none;
-  color: #676666;
+  color: #191919;
   transition: color 0.5s;
+  position: relative;
+  line-height: 1.25;
+  padding: 0.5em;
+  &:after {
+    display: block;
+    content: "";
+    border-bottom: solid 0.125em #41403f;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+    transform-origin: 0% 50%;
+  }
 
-  &:hover {
-    color: #41403f;
-    text-decoration: underline;
+  &:hover:after {
+    transform: scaleX(1);
   }
 `;
 
 const Timeline = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 100%;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 5em 1fr;
+  font-size: 1.5em;
+  margin-bottom: 5em;
 `;
 
 const Event = styled.div`
-  --timeline-width: 0.25em;
-
-  display: block;
   position: relative;
-  padding-bottom: 2.5em;
-  font-size: 1.5em;
-  text-align: center;
+  &:nth-child(odd) {
+    grid-column: 1;
+    justify-self: end;
+  }
 
-  &:not(:last-child) {
-    &:after {
-      content: "";
-      border-left: var(--timeline-width) solid #41403f;
-      transform: translateX(calc(50% - var(--timeline-width) / 2));
-      height: 2.5em;
-      width: 100%;
-      display: block;
-      position: absolute;
-    }
+  &:nth-child(even) {
+    grid-column: 3;
+    justify-self: start;
   }
 `;
 
-const Description = styled.span`
+const BlurredVideo = styled.video`
+  filter: blur(10px) saturate(1.25);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  transform: scale(1.25);
+  background-color: black;
+  opacity: 0.75;
+`;
+
+const TiltedTitle = styled.div`
+  transform: translateY(-25vw) rotate(30deg);
+  font-size: 7.5vmax;
+  color: #191919;
+  text-align: center;
   padding: 1em;
-  color: #676666;
+`;
+
+const Centered = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RhomboidTitle = styled.div`
+  position: relative;
+  font-size: 2.5em;
+  color: #191919;
+  text-align: center;
+  display: inline;
+  padding: 0.25em 1em 0.25em 1em;
+  line-height: 1;
+  margin: 1em;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: skewX(-5deg);
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+`;
+
+const Time = styled.span`
+  display: inline-block;
+  color: #41403f;
+  justify-self: start;
+  font-size: 0.75em;
+  line-height: 1;
+  &:after {
+    content: "Uhr";
+    color: #676666;
+    font-size: 0.75em;
+    padding: 0.25em;
+  }
+`;
+
+const Description = RhomboidTitle.extend`
+  position: relative;
+  color: #191919;
+  text-align: center;
+  padding: 0.75em 1em;
+  font-size: 1em;
+  line-height: 1;
+  display: grid;
+  justify-items: start;
+  margin: 1em;
+  min-width: 7.5em;
+  width: fit-content;
+`;
+
+const LinePositive = styled.div`
+  width: 150%;
+  position: relative;
+  &:after {
+    position: absolute;
+
+    content: "";
+    border-bottom: 0.25em solid #191919;
+    width: 100%;
+    transform: rotate(30deg);
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    border-bottom: 0.25em solid #191919;
+    width: 100%;
+    transform: rotate(-30deg);
+  }
 `;
 
 export default withSiteData(() => (
   <Fragment>
+    <BlurredVideo playsInline autoPlay loop muted>
+      <source src="./bgVideo.mp4" type="video/mp4" />
+    </BlurredVideo>
     <Hero>
-      <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
+      <TagDerRetterLogo src="logo-tdr-nl-larger-nobg.gif" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">
@@ -471,71 +562,134 @@ export default withSiteData(() => (
         </Content>
       </Triangle>
     </ZickZack>
+    <FluentContent>
+      <Centered>
+        <RhomboidTitle>Tagesprogramm</RhomboidTitle>
+      </Centered>
+      <Centered>
+        <Timeline>
+          {[
+            <Event>
+              <Description>
+                <Time>9:00</Time>
+                Musikalische Einstimmung
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>10:00</Time>Offizielle Eroeffnung
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>10:15-10:45</Time>Polizeihunde
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>11:00-11:45</Time>Einsatzuebung Feuerwehr/DRK
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>11:45</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>11:45-12:15</Time>Talkrunde
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>12:15-13:00</Time>Einsatzuebung THW
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>13:00</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>13:15-13:45</Time>Polizeihunde
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>13:55</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>14:00-14:45</Time>Landespolizeiorhester
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>14:45</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time> 14:45-15:15</Time>Talkrunde
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>15:15-16:00</Time>Landespolizeiorchester
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>16:00</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>16:15-16:45</Time>Polizeihunde
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>17:00-17:45</Time>Einsatzuebung Feuerwehr/DRK
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>17:45</Time>Auslosung Quiz
+              </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>18:00</Time>Veranstaltungsende
+              </Description>
+            </Event>
+          ].map(
+            (item, index) =>
+              index % 2 ? (
+                <Fragment>
+                  <div />
+                  {item}
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {item}
+                  <div />
+                </Fragment>
+              )
+          )}
+        </Timeline>
+      </Centered>
+      <Centered>
+        <RhomboidTitle>Mit freundlicher Unterstuetzung von</RhomboidTitle>
+      </Centered>
+    </FluentContent>
     <Footer>
-      <FooterText larger>Tagesprogramm</FooterText>
-      <Timeline>
-        <Event>
-          9:00 Uhr
-          <Description>Musikalische Einstimmung</Description>
-        </Event>
-        <Event>
-          10:00 Uhr<Description>Offizielle Eroeffnung</Description>
-        </Event>
-        <Event>
-          10:15-10:45 Uhr<Description>Polizeihunde</Description>
-        </Event>
-        <Event>
-          11:00-11:45 Uhr<Description>Einsatzuebung Feuerwehr/DRK</Description>
-        </Event>
-        <Event>
-          11:45 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          11:45-12:15 Uhr<Description>Talkrunde</Description>
-        </Event>
-        <Event>
-          12:15-13:00 Uhr<Description>Einsatzuebung THW</Description>
-        </Event>
-        <Event>
-          13:00 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          13:15-13:45 Uhr<Description>Polizeihunde</Description>
-        </Event>
-        <Event>
-          13:55 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          14:00-14:45 Uhr<Description>Landespolizeiorhester</Description>
-        </Event>
-        <Event>
-          14:45 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          14:45-15:15 Uhr<Description>Talkrunde</Description>
-        </Event>
-        <Event>
-          15:15-16:00 Uhr<Description>Landespolizeiorchester</Description>
-        </Event>
-        <Event>
-          16:00 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          16:15-16:45 Uhr<Description>Polizeihunde</Description>
-        </Event>
-        <Event>
-          17:00-17:45 Uhr<Description>Einsatzuebung Feuerwehr/DRK</Description>
-        </Event>
-        <Event>
-          17:45 Uhr<Description>Auslosung Quiz</Description>
-        </Event>
-        <Event>
-          18:00 Uhr<Description>Veranstaltungsende</Description>
-        </Event>
-      </Timeline>
-      <FooterText>Mit freundlicher Unterstuetzung von:</FooterText>
       <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
-      <Link href="./impressum">Impressum</Link>
+      <Centered>
+        <Link href="./impressum">Impressum</Link>
+      </Centered>
     </Footer>
   </Fragment>
 ));

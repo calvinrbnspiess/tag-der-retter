@@ -487,31 +487,44 @@ const Description = RhomboidTitle.extend`
   width: fit-content;
 `;
 
-const LinePositive = styled.div`
-  width: 150%;
+const Line = styled.div`
+  width: 100%;
   position: relative;
-  &:after {
-    position: absolute;
-
-    content: "";
-    border-bottom: 0.25em solid #191919;
-    width: 100%;
-    transform: rotate(30deg);
-  }
-
-  &:after {
-    position: absolute;
-    content: "";
-    border-bottom: 0.25em solid #191919;
-    width: 100%;
-    transform: rotate(-30deg);
-  }
+  grid-row: span 2;
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${props =>
+    props.lineToLast &&
+    css`
+      &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        border-bottom: 0.25em solid #191919;
+        transform: rotate(30deg) scaleX(2);
+        z-index: -2;
+      }
+    `} ${props =>
+    props.lineToNext &&
+    css`
+      &:after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        border-bottom: 0.25em solid #191919;
+        transform: rotate(-30deg) scaleX(2);
+        top: 100%;
+        z-index: -2;
+      }
+    `};
 `;
 
 export default withSiteData(() => (
   <Fragment>
     <BlurredVideo playsInline autoPlay loop muted>
-      <source src="./bgVideo.mp4" type="video/mp4" />
+      <source src="./bgVideo-compressed.mp4" type="video/mp4" />
     </BlurredVideo>
     <Hero>
       <TagDerRetterLogo src="logo-tdr-nl-larger-nobg.gif" />
@@ -664,9 +677,14 @@ export default withSiteData(() => (
               <Description>
                 <Time>18:00</Time>Veranstaltungsende
               </Description>
+            </Event>,
+            <Event>
+              <Description>
+                <Time>18:00</Time>Veranstaltungsende
+              </Description>
             </Event>
           ].map(
-            (item, index) =>
+            (item, index, array) =>
               index % 2 ? (
                 <Fragment>
                   <div />
@@ -675,7 +693,10 @@ export default withSiteData(() => (
               ) : (
                 <Fragment>
                   {item}
-                  <div />
+                  <Line
+                    lineToLast={index + 1 < array.length}
+                    lineToNext={index + 2 < array.length}
+                  />
                 </Fragment>
               )
           )}

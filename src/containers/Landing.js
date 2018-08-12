@@ -524,7 +524,7 @@ const Line = styled.div`
 export default withSiteData(() => (
   <Fragment>
     <BlurredVideo playsInline autoPlay loop muted>
-      <source src="./bgVideo-compressed.mp4" type="video/mp4" />
+      <source src="./bgVideo-compressed-480.mp4" type="video/mp4" />
     </BlurredVideo>
     <Hero>
       <TagDerRetterLogo src="logo-tdr-nl-larger-nobg.gif" />

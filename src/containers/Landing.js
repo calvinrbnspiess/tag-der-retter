@@ -677,11 +677,6 @@ export default withSiteData(() => (
               <Description>
                 <Time>18:00</Time>Veranstaltungsende
               </Description>
-            </Event>,
-            <Event>
-              <Description>
-                <Time>18:00</Time>Veranstaltungsende
-              </Description>
             </Event>
           ].map(
             (item, index, array) =>

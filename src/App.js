@@ -15,8 +15,8 @@ injectGlobal`
 
   @font-face {
     font-family: "AdobeGothicStd-Bold-Alphabetic";
-    src: url("AdobeGothicStd-Bold.otf") format("otf"),
-      url("AdobeGothicStd-Bold-Alphabetic.woff") format("woff");
+    src: url('AdobeGothicStd-Bold-Alphabetic.woff2') format('woff2'),
+         url('AdobeGothicStd-Bold-Alphabetic.woff') format('woff');
   }
 `;
 

@@ -11,7 +11,7 @@ const Hero = styled.div`
   width: 100%;
   height: 25vw;
   font-size: 25vw;
-
+  background-color: #fbfcfb;
   @media (min-width: 1024px) {
     height: 5vw;
     font-size: 15vw;
@@ -22,10 +22,6 @@ const TagDerRetterLogo = styled.img`
   width: 4em;
   position: absolute;
   top: -0.25em;
-
-  ${"" /* @media (max-width: 1024px) {
-    max-width: 615px;
-  } */};
 `;
 
 const ZickZack = styled.div`
@@ -34,37 +30,6 @@ const ZickZack = styled.div`
   grid-template-columns: 100vw 100vw;
   grid-auto-rows: 115.47vw;
 `;
-
-// const fadeinOdd = keyframes`
-//   from {
-//     transform: translateX(-100%) translateZ(0);
-//     opacity: 0;
-//     backface-visibility: hidden;
-// perspective: 1000;
-// will-change: transform;
-//
-//   }
-//
-//   to {
-//     transform: none;
-//     opacity 1;
-//   }
-// `;
-
-// const fadeinEven = keyframes`
-//   from {
-//     transform: translateX(0%) translateY(50%);
-//     opacity: 0;
-//     backface-visibility: hidden;
-//     perspective: 1000;
-//     will-change: transform;
-//   }
-//
-//   to {
-//   transform: translateX(-100%) translateY(50%);
-//   opacity 1;
-//   }
-// `;
 
 const Triangle = styled.div.attrs({
   style: props => ({
@@ -206,88 +171,6 @@ const Block = styled.span`
     `};
 `;
 
-const Controls = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.25em;
-  padding: 3em;
-  padding-right: 7.5em;
-  box-sizing: border-box;
-`;
-
-const ControlButton = styled.div`
-  border: solid white;
-  border-width: 0 0.75em 0.75em 0;
-  display: inline-block;
-  padding: 1em;
-  ${props => props.active && `cursor: pointer`};
-  transition: transform 0.5s, border-color 0.25s;
-
-  &:hover {
-    border-color: #676666;
-  }
-`;
-
-const Previous = ControlButton.extend`
-  transform: rotate(135deg)
-    ${props => (props.active === true ? `scale(1)` : `scale(0)`)};
-`;
-
-const Next = ControlButton.extend`
-  transform: rotate(-45deg)
-    ${props => (props.active === true ? `scale(1)` : `scale(0)`)};
-`;
-
-class Carousel extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      index: 0,
-      previousAvailable: false,
-      nextAvailable: props.items.length > 1
-    };
-  }
-
-  updateIndex = index => {
-    this.setState({
-      index: index,
-      previousAvailable: index > 0,
-      nextAvailable: index + 1 < this.props.items.length
-    });
-  };
-
-  onPrevious = () => {
-    if (!this.state.previousAvailable) {
-      return;
-    }
-
-    this.updateIndex(this.state.index - 1);
-  };
-
-  onNext = () => {
-    if (!this.state.nextAvailable) {
-      return;
-    }
-
-    this.updateIndex(this.state.index + 1);
-  };
-
-  render() {
-    return this.props.render(
-      this.props.items[this.state.index],
-      this.onPrevious,
-      this.onNext,
-      this.state.previousAvailable,
-      this.state.nextAvailable
-    );
-  }
-}
-
 const Logo = styled.img`
   width: 7.5em;
   align-self: center;
@@ -295,49 +178,13 @@ const Logo = styled.img`
   max-height: 3.5em;
 `;
 
-const InstitutionDescription = styled.div`
-  font-size: 0.25em;
-  padding: 1em;
-`;
-
-const institutions = [
-  {
-    name: "Freiwillige Feuerwehr Landau",
-    header: "/318.jpg"
-  },
-  {
-    name: "Technisches Hilfswerk Ortsverband Landau",
-    header: "/168.jpg"
-  },
-  {
-    name: "Deutsches Rotes Kreuz",
-    header: "/151.jpg"
-  },
-  {
-    name: "Kriseninterventionsdienst",
-    header: "/151.jpg"
-  },
-  {
-    name: "Polizeidirektion Landau",
-    header: "/151.jpg"
-  },
-  {
-    name: "Deutsche Lebens-Rettungs-Gesellschaft",
-    header: "/151.jpg"
-  },
-  {
-    name: "Reservisten der Bundeswehr",
-    header: "/151.jpg"
-  }
-];
-
 const sponsors = [
-  "./logo-energie-südwest.png",
-  "./logo-vr-bank.jpg",
-  "./logo-sparkasse-süw.jpg",
-  "./logo-kissel-stiftung.jpg",
-  "./logo-pro-group.jpg",
-  "./logo-antenne-landau.png"
+  "./min/logo-energie-südwest-min.png",
+  "./min/logo-vr-bank-min.jpg",
+  "./min/logo-sparkasse-süw-min.jpg",
+  "./min/logo-kissel-stiftung-min.jpg",
+  "./min/logo-pro-group-min.jpg",
+  "./min/logo-antenne-landau-min.png"
 ];
 
 const FluentContent = styled.div`
@@ -438,7 +285,7 @@ const Centered = styled.div`
 
 const RhomboidTitle = styled.div`
   position: relative;
-  font-size: 2.5em;
+  font-size: 3vmin;
   color: #191919;
   text-align: center;
   display: inline;
@@ -524,10 +371,10 @@ const Line = styled.div`
 export default withSiteData(() => (
   <Fragment>
     <BlurredVideo playsInline autoPlay loop muted>
-      <source src="./bgVideo-compressed-480.mp4" type="video/mp4" />
+      <source src="./bgVideo-compressed.mp4" type="video/mp4" />
     </BlurredVideo>
     <Hero>
-      <TagDerRetterLogo src="logo-tdr-nl-larger-nobg.gif" />
+      <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">
@@ -553,8 +400,8 @@ export default withSiteData(() => (
           </Block>
         </Content>
       </Triangle>
-      <ParallaxBackgroundTriangle url="/092.jpg" />
-      <ParallaxBackgroundTriangle url="/112.jpg" />
+      <ParallaxBackgroundTriangle url="/min/092-min.jpg" />
+      <ParallaxBackgroundTriangle url="/min/112-min.jpg" />
       <Triangle bgColor="#dbd9d8">
         <Content>
           <Block color="#676666">

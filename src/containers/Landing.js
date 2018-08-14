@@ -395,7 +395,7 @@ const Link = styled.a`
 const Timeline = styled.div`
   display: grid;
   grid-template-columns: 1fr 5em 1fr;
-  font-size: 1.5em;
+  font-size: 2.5vmin;
   margin-bottom: 5em;
 `;
 
@@ -414,11 +414,11 @@ const Event = styled.div`
 
 const BlurredVideo = styled.video`
   filter: blur(10px) saturate(1.25);
-  width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
-  transform: scale(1.25);
-  background-color: black;
+  left: 50%;
+  transform: translateX(-50%) scale(1.25);
+  background: radial-gradient(#756c6c 25%, #141842);
   opacity: 0.75;
 `;
 
@@ -476,7 +476,7 @@ const Time = styled.span`
 const Description = RhomboidTitle.extend`
   position: relative;
   color: #191919;
-  text-align: center;
+  text-align: left;
   padding: 0.75em 1em;
   font-size: 1em;
   line-height: 1;
@@ -600,7 +600,7 @@ export default withSiteData(() => (
             </Event>,
             <Event>
               <Description>
-                <Time>11:00-11:45</Time>Einsatzuebung Feuerwehr/DRK
+                <Time>11:00-11:45</Time>Einsatzuebung Feuerwehr / DRK
               </Description>
             </Event>,
             <Event>
@@ -665,7 +665,7 @@ export default withSiteData(() => (
             </Event>,
             <Event>
               <Description>
-                <Time>17:00-17:45</Time>Einsatzuebung Feuerwehr/DRK
+                <Time>17:00-17:45</Time>Einsatzuebung Feuerwehr / DRK
               </Description>
             </Event>,
             <Event>

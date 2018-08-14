@@ -9,14 +9,10 @@ injectGlobal`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: "AdobeGothicStd-Bold-Alphabetic";
+    font-family: adobe-gothic-std, sans-serif;
+    font-style: normal;
+    font-weight: 700;
     background-color: #fbfcfb;
-  }
-
-  @font-face {
-    font-family: "AdobeGothicStd-Bold-Alphabetic";
-    src: url('AdobeGothicStd-Bold-Alphabetic.woff2') format('woff2'),
-         url('AdobeGothicStd-Bold-Alphabetic.woff') format('woff');
   }
 `;
 

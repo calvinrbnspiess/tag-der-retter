@@ -19,9 +19,11 @@ const Hero = styled.div`
 `;
 
 const TagDerRetterLogo = styled.img`
-  width: 4em;
+  max-width: 2em;
   position: absolute;
-  top: -0.25em;
+  padding: 0.25em;
+  display: block;
+  transform: skewX(-5deg);
 `;
 
 const ZickZack = styled.div`
@@ -218,7 +220,8 @@ const FooterText = styled.div`
 const Link = styled.a`
   text-align: center;
   display: inline;
-  font-size: 1.25em;
+  font-size: 2vmin;
+
   text-decoration: none;
   color: #191919;
   transition: color 0.5s;
@@ -286,6 +289,11 @@ const Centered = styled.div`
 const RhomboidTitle = styled.div`
   position: relative;
   font-size: 3vmin;
+  ${props =>
+    props.larger &&
+    css`
+      font-size: 5vmin;
+    `};
   color: #191919;
   text-align: center;
   display: inline;
@@ -374,7 +382,7 @@ export default withSiteData(() => (
       <source src="./bgVideo-compressed.mp4" type="video/mp4" />
     </BlurredVideo>
     <Hero>
-      <TagDerRetterLogo src="logo-tdr-nl-larger.gif" />
+      <TagDerRetterLogo src="logo-tdr-nl-larger-no-ws.gif" />
     </Hero>
     <ZickZack>
       <Triangle bgColor="#dbd9d8">
@@ -424,7 +432,7 @@ export default withSiteData(() => (
     </ZickZack>
     <FluentContent>
       <Centered>
-        <RhomboidTitle>Tagesprogramm</RhomboidTitle>
+        <RhomboidTitle larger>Tagesprogramm</RhomboidTitle>
       </Centered>
       <Centered>
         <Timeline>
@@ -482,7 +490,7 @@ export default withSiteData(() => (
             </Event>,
             <Event>
               <Description>
-                <Time>14:00-14:45</Time>Landespolizeiorhester
+                <Time>14:00-14:45</Time>Landespolizeiorchester
               </Description>
             </Event>,
             <Event>

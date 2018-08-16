@@ -189,11 +189,21 @@ const sponsors = [
   "./min/logo-antenne-landau-min.png"
 ];
 
-const FluentContent = styled.div`
-  transform: translateY(50vw);
-`;
+const participants = [
+  "./min/logo-dlrg-min.jpg",
+  "./min/logo-rfv-min.jpg",
 
-const Footer = FluentContent.extend`
+  "./min/logo-drk-min.png",
+  "./min/logo-reservisten-bundeswehr-min.jpg",
+
+  "./min/logo-polizei-min.png",
+  "./min/logo-kid-min.png",
+  "./min/logo-feuerwehr-landau-min.jpg",
+  "./min/logo-thw-min.jpg"
+];
+
+const Footer = styled.div`
+  position: relative;
   padding: 0.5em;
   background-color: white;
 `;
@@ -205,7 +215,7 @@ const Sponsors = styled.div`
   padding: 2.5em;
 `;
 
-const Sponsor = styled.img`
+const FittingLogo = styled.img`
   width: 100%;
   object-fit: contain;
 `;
@@ -376,6 +386,21 @@ const Line = styled.div`
     `};
 `;
 
+const Participants = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 2em);
+  grid-gap: 0.25em;
+  align-items: center;
+  justify-items: center;
+  padding: 1.5em;
+  box-sizing: border-box;
+`;
+
+const FluentContent = styled.div`
+  position: relative;
+  z-index: 0;
+`;
+
 export default withSiteData(() => (
   <Fragment>
     <BlurredVideo playsInline autoPlay loop muted>
@@ -428,6 +453,13 @@ export default withSiteData(() => (
             zur Schau
           </Block>
         </Content>
+      </Triangle>
+      <Triangle bgColor="white">
+        <Centered>
+          <Participants
+            children={participants.map(src => <FittingLogo src={src} />)}
+          />
+        </Centered>
       </Triangle>
     </ZickZack>
     <FluentContent>
@@ -557,7 +589,7 @@ export default withSiteData(() => (
       </Centered>
     </FluentContent>
     <Footer>
-      <Sponsors children={sponsors.map(src => <Sponsor src={src} />)} />
+      <Sponsors children={sponsors.map(src => <FittingLogo src={src} />)} />
       <Centered>
         <Link href="./impressum">Impressum</Link>
       </Centered>

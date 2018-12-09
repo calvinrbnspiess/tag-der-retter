@@ -457,7 +457,9 @@ export default withSiteData(() => (
       <Triangle bgColor="white">
         <Centered>
           <Participants
-            children={participants.map(src => <FittingLogo src={src} />)}
+            children={participants.map(src => (
+              <FittingLogo key={src} src={src} />
+            ))}
           />
         </Centered>
       </Triangle>
@@ -469,7 +471,7 @@ export default withSiteData(() => (
       <Centered>
         <Timeline>
           {[
-            <Event>
+            <Event key={0}>
               <Description>
                 <Time>9:00</Time>
                 Musikalische Einstimmung
@@ -568,12 +570,12 @@ export default withSiteData(() => (
           ].map(
             (item, index, array) =>
               index % 2 ? (
-                <Fragment>
+                <Fragment key={index}>
                   <div />
                   {item}
                 </Fragment>
               ) : (
-                <Fragment>
+                <Fragment key={index}>
                   {item}
                   <Line
                     lineToLast={index + 1 < array.length}
@@ -589,7 +591,9 @@ export default withSiteData(() => (
       </Centered>
     </FluentContent>
     <Footer>
-      <Sponsors children={sponsors.map(src => <FittingLogo src={src} />)} />
+      <Sponsors
+        children={sponsors.map(src => <FittingLogo key={src} src={src} />)}
+      />
       <Centered>
         <Link href="./impressum">Impressum</Link>
       </Centered>
